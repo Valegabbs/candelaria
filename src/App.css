@@ -20,7 +20,7 @@ html {
 
 body {
   margin: 0;
-  background: #f4f4f4;
+  background: var(--white);
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -37,10 +37,10 @@ select {
 }
 
 main {
-  max-width: 1120px;
-  margin: 0 auto;
+  width: 100%;
+  min-width: 320px;
+  overflow-x: clip;
   background: var(--white);
-  box-shadow: 0 0 0 1px rgba(7, 27, 67, 0.08);
 }
 
 .site-header {
@@ -49,7 +49,7 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
-  padding: 0 54px;
+  padding: 0 clamp(28px, 6vw, 96px);
   background: var(--white);
 }
 
@@ -62,8 +62,8 @@ main {
 nav {
   display: flex;
   align-items: center;
-  gap: 26px;
-  font-size: 12px;
+  gap: clamp(18px, 2.2vw, 34px);
+  font-size: 13px;
   color: #1e2d4c;
 }
 
@@ -100,14 +100,23 @@ nav a.active::after {
 }
 
 .hero-section {
-  min-height: 535px;
+  min-height: clamp(560px, 62vh, 760px);
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: minmax(440px, 42%) 1fr;
   position: relative;
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(0, 35, 91, 0.98) 0%, rgba(0, 44, 112, 0.92) 42%, rgba(0, 31, 80, 0.34) 68%, rgba(0, 31, 80, 0) 100%),
     var(--blue-900);
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(0, 39, 97, 0.98) 0%, rgba(0, 42, 102, 0.92) 28%, rgba(0, 46, 105, 0.62) 50%, rgba(0, 32, 76, 0.16) 76%, rgba(0, 22, 58, 0.06) 100%);
 }
 
 .hero-copy {
@@ -116,7 +125,7 @@ nav a.active::after {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 54px 0 58px 54px;
+  padding: clamp(70px, 8vw, 116px) 0 clamp(72px, 8vw, 118px) clamp(32px, 7vw, 112px);
   color: var(--white);
 }
 
@@ -129,28 +138,28 @@ nav a.active::after {
 }
 
 .hero-copy h1 {
-  width: min(100%, 435px);
+  width: min(100%, 520px);
   margin: 0;
   color: var(--white);
-  font-size: 44px;
+  font-size: clamp(46px, 4.8vw, 72px);
   line-height: 1.08;
   font-weight: 900;
   letter-spacing: 0;
 }
 
 .hero-text {
-  width: min(100%, 398px);
+  width: min(100%, 510px);
   margin: 30px 0 24px;
-  font-size: 17px;
+  font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.94);
 }
 
 .hero-actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 13px;
-  width: 285px;
+  width: min(100%, 610px);
 }
 
 .primary-light,
@@ -160,7 +169,8 @@ nav a.active::after {
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  font-size: 12px;
+  padding: 0 22px;
+  font-size: 13px;
   font-weight: 900;
 }
 
@@ -178,43 +188,47 @@ nav a.active::after {
 
 .hero-collage {
   position: absolute;
-  inset: 0 0 0 28%;
+  inset: 0;
+  z-index: 0;
   background-image: url('/assets/hero-school.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.98;
+  opacity: 1;
 }
 
 .institutions,
 .journey {
-  padding: 28px 54px 34px;
+  padding: clamp(44px, 5vw, 76px) clamp(24px, 6vw, 96px) clamp(48px, 5vw, 80px);
   background: var(--white);
 }
 
 .section-heading {
   text-align: center;
-  margin-bottom: 24px;
+  max-width: 850px;
+  margin: 0 auto 34px;
 }
 
 .section-heading h2 {
   margin: 0;
   color: #08285e;
-  font-size: 28px;
+  font-size: clamp(30px, 3vw, 46px);
   line-height: 1.1;
   font-weight: 950;
   letter-spacing: 0;
 }
 
 .section-heading p {
-  margin: 4px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: clamp(16px, 1.3vw, 20px);
 }
 
 .cards-grid {
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(22px, 2.5vw, 34px);
 }
 
 .school-card {
@@ -228,32 +242,32 @@ nav a.active::after {
 .school-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 0.95;
+  aspect-ratio: 1.72 / 1;
   object-fit: cover;
 }
 
 .card-body {
-  padding: 18px 14px 13px;
+  padding: 24px 22px 18px;
 }
 
 .card-body h3 {
-  min-height: 44px;
+  min-height: 52px;
   margin: 0 0 8px;
   color: #003a83;
-  font-size: 20px;
+  font-size: clamp(21px, 1.55vw, 27px);
   line-height: 1.05;
   font-weight: 950;
 }
 
 .card-body p {
-  margin: 0 0 14px;
+  margin: 0 0 18px;
   color: #3a4660;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.35;
 }
 
 .tags {
-  min-height: 52px;
+  min-height: 58px;
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
@@ -261,11 +275,11 @@ nav a.active::after {
 }
 
 .tags span {
-  padding: 6px 9px;
+  padding: 7px 10px;
   border-radius: 5px;
   background: #eef5ff;
   color: #0052a8;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
 }
@@ -282,13 +296,13 @@ nav a.active::after {
 
 .school-card a {
   display: flex;
-  min-height: 34px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
-  margin-top: 11px;
+  margin-top: 14px;
   border-radius: 5px;
   color: var(--white);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 950;
   background: var(--blue-800);
 }
@@ -302,18 +316,20 @@ nav a.active::after {
 }
 
 .journey {
-  padding: 8px 54px 46px;
+  padding: 18px clamp(24px, 6vw, 96px) clamp(56px, 5vw, 90px);
   background: linear-gradient(#ffffff 0%, #f7f9fc 100%);
 }
 
 .contact-band {
-  min-height: 385px;
+  min-height: clamp(520px, 55vh, 700px);
   display: grid;
-  grid-template-columns: 1fr 0.94fr;
-  gap: 72px;
+  grid-template-columns: minmax(430px, 0.95fr) minmax(360px, 520px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(64px, 8vw, 130px);
   position: relative;
   overflow: hidden;
-  padding: 76px 84px 66px 176px;
+  padding: clamp(76px, 8vw, 120px) clamp(30px, 7vw, 116px) clamp(70px, 7vw, 110px) clamp(80px, 12vw, 210px);
   background:
     radial-gradient(circle at 22% 18%, rgba(0, 75, 167, 0.35), transparent 33%),
     linear-gradient(90deg, #002f78 0%, #003a87 46%, #00245f 100%);
@@ -338,10 +354,10 @@ nav a.active::after {
 }
 
 .contact-copy h2 {
-  max-width: 486px;
+  max-width: 610px;
   margin: 0;
   color: var(--white);
-  font-size: 50px;
+  font-size: clamp(50px, 4.8vw, 76px);
   line-height: 1.12;
   font-weight: 950;
   letter-spacing: 0;
@@ -356,9 +372,9 @@ nav a.active::after {
 }
 
 .contact-copy p {
-  max-width: 440px;
+  max-width: 580px;
   margin: 0 0 26px;
-  font-size: 24px;
+  font-size: clamp(23px, 2vw, 32px);
   line-height: 1.4;
 }
 
@@ -381,6 +397,8 @@ nav a.active::after {
 .lead-form {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 520px;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -439,12 +457,12 @@ nav a.active::after {
 }
 
 .site-footer {
-  min-height: 116px;
+  min-height: 132px;
   display: grid;
-  grid-template-columns: 205px 1.25fr 1fr 1fr auto;
+  grid-template-columns: 210px minmax(210px, 1.2fr) minmax(200px, 0.95fr) minmax(210px, 0.9fr) auto;
   align-items: center;
-  gap: 18px;
-  padding: 22px 54px;
+  gap: clamp(18px, 2vw, 32px);
+  padding: 26px clamp(28px, 6vw, 96px);
   background: #002151;
   color: var(--white);
 }
@@ -498,6 +516,56 @@ nav a.active::after {
   stroke-width: 1.7;
 }
 
+@media (max-width: 1180px) {
+  .site-header {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 18px 32px;
+  }
+
+  nav {
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .hero-section {
+    grid-template-columns: minmax(360px, 42%) 1fr;
+    min-height: 560px;
+  }
+
+  .hero-copy {
+    padding-left: 64px;
+  }
+
+  .hero-copy h1 {
+    font-size: 50px;
+  }
+
+  .cards-grid {
+    gap: 22px;
+  }
+
+  .contact-band {
+    grid-template-columns: minmax(340px, 0.9fr) minmax(320px, 440px);
+    gap: 48px;
+    padding-left: 92px;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .socials {
+    justify-content: flex-start;
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
 @media (max-width: 900px) {
   main {
     width: 100%;
@@ -525,7 +593,6 @@ nav a.active::after {
 
   .hero-collage {
     inset: 0;
-    opacity: 0.36;
   }
 
   .hero-copy {
@@ -535,6 +602,11 @@ nav a.active::after {
 
   .hero-copy h1 {
     font-size: 39px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: min(100%, 320px);
   }
 
   .institutions,
