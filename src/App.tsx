@@ -13,7 +13,7 @@ const schools = [
   {
     title: 'Colégio Candelária',
     description: 'Do Berçário ao Ensino Médio.',
-    image: '/assets/colegio.jpg',
+    image: '/assets/colegio-generated.png',
     tags: ['Educação Infantil', 'Fundamental', 'Ensino Médio'],
     button: 'Conheça o Colégio',
     theme: 'school',
@@ -21,7 +21,7 @@ const schools = [
   {
     title: 'EPA - Escola Paulista de Agrimensura',
     description: 'Formação técnica em Agrimensura.',
-    image: '/assets/epa.jpg',
+    image: '/assets/epa-generated.png',
     tags: ['Prática de campo', 'Tecnologia', 'Empregabilidade'],
     button: 'Conheça a EPA',
     theme: 'epa',
@@ -29,21 +29,11 @@ const schools = [
   {
     title: 'FEASP',
     description: 'Graduação e Pós-Graduação.',
-    image: '/assets/feasp.jpg',
+    image: '/assets/feasp-generated.png',
     tags: ['Engenharia', 'Pedagogia', 'Psicologia', 'ADS'],
     button: 'Conheça a FEASP',
     theme: 'feasp',
   },
-]
-
-const journey = [
-  'Berçário',
-  'Ensino Infantil',
-  'Fundamental',
-  'Ensino Médio',
-  'Técnico',
-  'Graduação',
-  'Pós',
 ]
 
 function App() {
@@ -113,14 +103,6 @@ function App() {
           <h2>Uma jornada. Muitas possibilidades.</h2>
           <p>Formação conectada, do primeiro passo ao próximo grande objetivo.</p>
         </div>
-        <div className="journey-track">
-          {journey.map((step, index) => (
-            <div className="journey-step" key={step}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{step}</strong>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section id="contato" className="contact-band">
@@ -160,7 +142,7 @@ function App() {
       </section>
 
       <footer className="site-footer">
-        <img src="/assets/footer-logo.jpg" alt="UNI Candelária" />
+        <img src="/assets/logo.png" alt="UNI Candelária" />
         <div className="footer-item">
           <MapPin />
           <span>Rua Arantiguaba, 804 - Vila Maria - São Paulo</span>

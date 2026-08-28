@@ -179,7 +179,7 @@ nav a.active::after {
 .hero-collage {
   position: absolute;
   inset: 0 0 0 28%;
-  background-image: url('/assets/hero-collage.jpg');
+  background-image: url('/assets/hero-school.png');
   background-size: cover;
   background-position: center;
   opacity: 0.98;
@@ -228,7 +228,7 @@ nav a.active::after {
 .school-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 0.82;
+  aspect-ratio: 2 / 0.95;
   object-fit: cover;
 }
 
@@ -302,39 +302,8 @@ nav a.active::after {
 }
 
 .journey {
-  padding-top: 8px;
+  padding: 8px 54px 46px;
   background: linear-gradient(#ffffff 0%, #f7f9fc 100%);
-}
-
-.journey-track {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
-
-.journey-step {
-  min-height: 82px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #dce5f1;
-  background: #ffffff;
-  text-align: center;
-}
-
-.journey-step span {
-  color: #f4bc00;
-  font-size: 12px;
-  font-weight: 950;
-}
-
-.journey-step strong {
-  color: #08285e;
-  font-size: 13px;
-  line-height: 1.2;
 }
 
 .contact-band {
@@ -472,7 +441,7 @@ nav a.active::after {
 .site-footer {
   min-height: 116px;
   display: grid;
-  grid-template-columns: 210px 1.25fr 1fr 1fr auto;
+  grid-template-columns: 205px 1.25fr 1fr 1fr auto;
   align-items: center;
   gap: 18px;
   padding: 22px 54px;
@@ -481,8 +450,10 @@ nav a.active::after {
 }
 
 .site-footer > img {
-  width: 185px;
-  border-radius: 2px;
+  width: 169px;
+  border-radius: 0;
+  background: #ffffff;
+  padding: 0;
 }
 
 .footer-item {
@@ -572,7 +543,6 @@ nav a.active::after {
   }
 
   .cards-grid,
-  .journey-track,
   .contact-band,
   .site-footer {
     grid-template-columns: 1fr;
