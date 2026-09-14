@@ -56,8 +56,6 @@ main {
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
   z-index: 20;
   height: 91px;
   display: flex;
@@ -71,6 +69,38 @@ main {
   border-bottom: 1px solid rgba(0, 47, 118, 0.08);
   box-shadow: 0 10px 30px rgba(7, 27, 67, 0.07);
   backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before,
+.site-header::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.site-header::before {
+  right: -86px;
+  top: -112px;
+  width: 238px;
+  height: 238px;
+  background:
+    radial-gradient(circle at 34% 36%, rgba(255, 196, 0, 0.34), transparent 34%),
+    radial-gradient(circle at 66% 62%, rgba(210, 38, 48, 0.14), transparent 42%),
+    rgba(0, 68, 157, 0.08);
+}
+
+.site-header::after {
+  left: 36%;
+  bottom: -118px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(0, 68, 157, 0.1);
+  background:
+    radial-gradient(circle at 38% 35%, rgba(255, 255, 255, 0.72), transparent 32%),
+    radial-gradient(circle at 70% 58%, rgba(255, 196, 0, 0.16), transparent 44%);
 }
 
 .brand img {
@@ -80,12 +110,19 @@ main {
   transition: transform 240ms ease, filter 240ms ease;
 }
 
+.brand {
+  position: relative;
+  z-index: 1;
+}
+
 .brand:hover img {
   transform: translateY(-1px) scale(1.02);
   filter: drop-shadow(0 8px 14px rgba(0, 47, 118, 0.14));
 }
 
 nav {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: clamp(18px, 2.2vw, 34px);
@@ -103,10 +140,10 @@ nav a {
 nav a::before {
   content: "";
   position: absolute;
-  left: -10px;
-  right: -10px;
-  top: 6px;
-  bottom: 6px;
+  left: -14px;
+  right: -14px;
+  top: 3px;
+  bottom: 3px;
   z-index: -1;
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(255, 196, 0, 0.18), rgba(0, 68, 157, 0.12));
@@ -137,6 +174,8 @@ nav a.active::after {
 }
 
 .top-whatsapp {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -200,11 +239,11 @@ nav a.active::after {
 }
 
 .hero-copy h1 {
-  width: min(100%, 520px);
+  width: min(100%, 540px);
   margin: 0;
   color: var(--white);
-  font-size: clamp(46px, 4.8vw, 72px);
-  line-height: 1.08;
+  font-size: clamp(42px, 4.2vw, 62px);
+  line-height: 1.12;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -214,6 +253,7 @@ nav a.active::after {
   position: relative;
   min-height: 1.12em;
   color: var(--yellow);
+  font-size: 0.86em;
 }
 
 .typing-line span {
@@ -225,7 +265,7 @@ nav a.active::after {
   white-space: nowrap;
   border-right: 0.08em solid rgba(255, 196, 0, 0.86);
   opacity: 0;
-  animation: typeCycle 12s steps(26, end) infinite;
+  animation: typeCycle 12s steps(18, end) infinite;
 }
 
 .typing-line span:nth-child(2) {

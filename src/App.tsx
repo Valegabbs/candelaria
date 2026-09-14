@@ -77,12 +77,12 @@ function App() {
         <div className="hero-copy">
           <p className="eyebrow">COLÉGIO • TÉCNICO • GRADUAÇÃO • PÓS</p>
           <h1>
-            Educação para cada fase.
-            <span className="sr-only">Formação para vida toda.</span>
+            Formação para
+            <span className="sr-only">a vida toda.</span>
             <span className="typing-line" aria-hidden="true">
-              <span>Formação para vida toda.</span>
-              <span>Um caminho completo.</span>
-              <span>Do começo ao futuro.</span>
+              <span>a vida toda.</span>
+              <span>cada fase.</span>
+              <span>o seu futuro.</span>
             </span>
           </h1>
           <p className="hero-text">
