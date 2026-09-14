@@ -73,10 +73,18 @@ function App() {
         </a>
       </header>
 
-      <section id="inicio" className="hero-section">
+      <section id="inicio" className="hero-section reveal-section">
         <div className="hero-copy">
           <p className="eyebrow">COLÉGIO • TÉCNICO • GRADUAÇÃO • PÓS</p>
-          <h1>Educação para cada fase. Formação para vida toda.</h1>
+          <h1>
+            Educação para cada fase.
+            <span className="sr-only">Formação para vida toda.</span>
+            <span className="typing-line" aria-hidden="true">
+              <span>Formação para vida toda.</span>
+              <span>Um caminho completo.</span>
+              <span>Do começo ao futuro.</span>
+            </span>
+          </h1>
           <p className="hero-text">
             Do Berçário à Pós-Graduação, três instituições conectadas em um só ecossistema educacional.
           </p>
@@ -91,7 +99,7 @@ function App() {
         <div className="hero-collage" role="img" aria-label="Estudantes em diferentes etapas de formação" />
       </section>
 
-      <section id="instituicoes" className="institutions">
+      <section id="instituicoes" className="institutions reveal-section">
         <div className="section-heading">
           <h2>Três instituições. Um caminho completo.</h2>
           <p>Integram a UniCandelária</p>
@@ -115,14 +123,14 @@ function App() {
         </div>
       </section>
 
-      <section className="journey" id="cursos">
+      <section className="journey reveal-section" id="cursos">
         <div className="section-heading">
           <h2>Uma jornada. Muitas possibilidades.</h2>
           <p>Formação conectada, do primeiro passo ao próximo grande objetivo.</p>
         </div>
       </section>
 
-      <section id="contato" className="contact-band">
+      <section id="contato" className="contact-band reveal-section">
         <div className="contact-shape" aria-hidden="true" />
         <div className="contact-copy">
           <h2>Seu futuro tem um caminho aqui.</h2>
