@@ -64,10 +64,10 @@ main {
   gap: 28px;
   padding: 0 clamp(28px, 6vw, 96px);
   background:
-    linear-gradient(115deg, #ffffff 0%, #ffffff 28%, rgba(255, 196, 0, 0.12) 58%, rgba(0, 68, 157, 0.1) 100%),
+    linear-gradient(115deg, #ffffff 0%, #ffffff 31%, #fff8db 60%, #e8f1ff 100%),
     var(--white);
-  border-bottom: 1px solid rgba(0, 47, 118, 0.08);
-  box-shadow: 0 10px 30px rgba(7, 27, 67, 0.07);
+  border-bottom: 1px solid rgba(0, 47, 118, 0.1);
+  box-shadow: 0 10px 30px rgba(7, 27, 67, 0.08);
   backdrop-filter: blur(16px);
   position: relative;
   overflow: hidden;
@@ -82,25 +82,32 @@ main {
 }
 
 .site-header::before {
-  right: -86px;
-  top: -112px;
-  width: 238px;
-  height: 238px;
+  right: -70px;
+  top: -126px;
+  width: 260px;
+  height: 260px;
   background:
-    radial-gradient(circle at 34% 36%, rgba(255, 196, 0, 0.34), transparent 34%),
-    radial-gradient(circle at 66% 62%, rgba(210, 38, 48, 0.14), transparent 42%),
-    rgba(0, 68, 157, 0.08);
+    radial-gradient(circle at 32% 34%, #ffc400 0 24%, transparent 25%),
+    radial-gradient(circle at 62% 60%, #d91f2b 0 20%, transparent 21%),
+    #00449d;
+  opacity: 0.9;
 }
 
 .site-header::after {
-  left: 36%;
-  bottom: -118px;
-  width: 220px;
-  height: 220px;
-  border: 1px solid rgba(0, 68, 157, 0.1);
+  left: 37%;
+  bottom: -142px;
+  width: 270px;
+  height: 270px;
+  border: 2px solid rgba(0, 68, 157, 0.28);
   background:
-    radial-gradient(circle at 38% 35%, rgba(255, 255, 255, 0.72), transparent 32%),
-    radial-gradient(circle at 70% 58%, rgba(255, 196, 0, 0.16), transparent 44%);
+    radial-gradient(circle at 38% 35%, #ffffff 0 24%, transparent 25%),
+    radial-gradient(circle at 70% 58%, #ffc400 0 18%, transparent 19%),
+    rgba(0, 68, 157, 0.16);
+}
+
+.site-header > * {
+  position: relative;
+  z-index: 1;
 }
 
 .brand img {
@@ -126,13 +133,14 @@ nav {
   display: flex;
   align-items: center;
   gap: clamp(18px, 2.2vw, 34px);
-  font-size: 13px;
+  font-size: 14px;
   color: #1e2d4c;
+  font-weight: 500;
 }
 
 nav a {
   position: relative;
-  padding: 11px 0;
+  padding: 13px 2px;
   white-space: nowrap;
   transition: color 220ms ease, transform 220ms ease;
 }
@@ -140,20 +148,20 @@ nav a {
 nav a::before {
   content: "";
   position: absolute;
-  left: -14px;
-  right: -14px;
-  top: 3px;
-  bottom: 3px;
+  left: -16px;
+  right: -16px;
+  top: 2px;
+  bottom: 2px;
   z-index: -1;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 196, 0, 0.18), rgba(0, 68, 157, 0.12));
+  background: linear-gradient(90deg, #ffc400, #ffda4d);
   opacity: 0;
   transform: scaleX(0.82);
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
 nav a:hover {
-  color: var(--blue-800);
+  color: var(--blue-900);
   transform: translateY(-1px);
 }
 
@@ -239,10 +247,10 @@ nav a.active::after {
 }
 
 .hero-copy h1 {
-  width: min(100%, 540px);
+  width: min(100%, 500px);
   margin: 0;
   color: var(--white);
-  font-size: clamp(42px, 4.2vw, 62px);
+  font-size: clamp(38px, 3.9vw, 56px);
   line-height: 1.12;
   font-weight: 900;
   letter-spacing: 0;
@@ -251,7 +259,8 @@ nav a.active::after {
 .typing-line {
   display: block;
   position: relative;
-  min-height: 1.12em;
+  width: min(100%, 9.7em);
+  min-height: 1.16em;
   color: var(--yellow);
   font-size: 0.86em;
 }
@@ -265,7 +274,8 @@ nav a.active::after {
   white-space: nowrap;
   border-right: 0.08em solid rgba(255, 196, 0, 0.86);
   opacity: 0;
-  animation: typeCycle 12s steps(18, end) infinite;
+  animation: typeCycle 12s steps(14, end) infinite;
+  clip-path: inset(0 100% 0 0);
 }
 
 .typing-line span:nth-child(2) {
@@ -791,25 +801,25 @@ nav a.active::after {
 
 @keyframes typeCycle {
   0% {
-    width: 0;
     opacity: 1;
+    clip-path: inset(0 100% 0 0);
   }
 
   12%,
   26% {
-    width: 100%;
     opacity: 1;
+    clip-path: inset(0 0 0 0);
   }
 
   33% {
-    width: 0;
     opacity: 1;
+    clip-path: inset(0 100% 0 0);
   }
 
   34%,
   100% {
-    width: 0;
     opacity: 0;
+    clip-path: inset(0 100% 0 0);
   }
 }
 
@@ -860,7 +870,7 @@ nav a.active::after {
   }
 
   .hero-copy h1 {
-    font-size: 50px;
+    font-size: 46px;
   }
 
   .cards-grid {
@@ -920,7 +930,7 @@ nav a.active::after {
   }
 
   .hero-copy h1 {
-    font-size: 39px;
+    font-size: 35px;
   }
 
   .hero-actions {
@@ -982,11 +992,15 @@ nav a.active::after {
   }
 
   nav a {
-    font-size: 12px;
+    font-size: 12.5px;
   }
 
   .typing-line span {
     white-space: normal;
+  }
+
+  .typing-line {
+    width: min(100%, 8.8em);
   }
 }
 
