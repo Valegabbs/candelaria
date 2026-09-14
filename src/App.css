@@ -290,8 +290,12 @@ nav a.active::after {
 }
 
 .feasp .tags span {
+  flex: 1 1 min(100%, 165px);
   background: #fbebff;
   color: #8517a7;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
 }
 
 .school-card a {

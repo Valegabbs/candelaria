@@ -7,7 +7,14 @@ import {
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTiktok } from 'react-icons/fa6'
 import './App.css'
 
-const navItems = ['Início', 'Colégio Candelária', 'EPA', 'FEASP', 'Cursos', 'Contato']
+const navItems = [
+  { label: 'Início', href: '#inicio' },
+  { label: 'Colégio Candelária', href: 'https://iecandelaria.com.br/' },
+  { label: 'EPA', href: 'https://escolapaulistaagrimensura.org.br/' },
+  { label: 'FEASP', href: 'https://feasp.edu.br/' },
+  { label: 'Cursos', href: '#cursos' },
+  { label: 'Contato', href: '#contato' },
+]
 
 const schools = [
   {
@@ -16,6 +23,7 @@ const schools = [
     image: '/assets/colegio-generated.png',
     tags: ['Educação Infantil', 'Fundamental', 'Ensino Médio'],
     button: 'Conheça o Colégio',
+    url: 'https://iecandelaria.com.br/',
     theme: 'school',
   },
   {
@@ -24,14 +32,23 @@ const schools = [
     image: '/assets/epa-generated.png',
     tags: ['Prática de campo', 'Tecnologia', 'Empregabilidade'],
     button: 'Conheça a EPA',
+    url: 'https://escolapaulistaagrimensura.org.br/',
     theme: 'epa',
   },
   {
     title: 'FEASP',
     description: 'Graduação e Pós-Graduação.',
     image: '/assets/feasp-generated.png',
-    tags: ['Engenharia', 'Pedagogia', 'Psicologia', 'ADS'],
+    tags: [
+      'Engenharia Cartográfica e de Agrimensura',
+      'Graduação em Pedagogia',
+      'Georreferenciamento de Imóveis Rurais e Urbanos',
+      'Pós-Graduação Educação Inclusiva',
+      'Psicopedagogia',
+      'Pós-Graduação Práticas de Libras',
+    ],
     button: 'Conheça a FEASP',
+    url: 'https://feasp.edu.br/',
     theme: 'feasp',
   },
 ]
@@ -45,8 +62,8 @@ function App() {
         </a>
         <nav aria-label="Navegação principal">
           {navItems.map((item) => (
-            <a key={item} className={item === 'Início' ? 'active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`}>
-              {item}
+            <a key={item.label} className={item.label === 'Início' ? 'active' : ''} href={item.href}>
+              {item.label}
             </a>
           ))}
         </nav>
@@ -91,7 +108,7 @@ function App() {
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
-                <a href="#contato">{school.button}</a>
+                <a href={school.url}>{school.button}</a>
               </div>
             </article>
           ))}
