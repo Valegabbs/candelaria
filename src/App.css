@@ -695,17 +695,35 @@ nav a.active::after {
 }
 
 .site-footer {
-  min-height: 132px;
   display: grid;
-  grid-template-columns: 210px minmax(210px, 1.2fr) minmax(200px, 0.95fr) minmax(210px, 0.9fr) auto;
-  align-items: center;
-  gap: clamp(18px, 2vw, 32px);
-  padding: 26px clamp(28px, 6vw, 96px);
+  grid-template-columns: minmax(260px, 1.1fr) repeat(3, minmax(190px, 0.75fr));
+  align-items: stretch;
+  gap: 0;
+  padding: 28px clamp(28px, 6vw, 96px);
   background: #002151;
   color: var(--white);
 }
 
-.site-footer > img {
+.footer-brand,
+.footer-social-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  min-height: 128px;
+  padding: 0 clamp(18px, 2.5vw, 34px);
+  border-right: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.footer-brand {
+  padding-left: 0;
+}
+
+.footer-social-group:last-child {
+  border-right: 0;
+}
+
+.footer-brand > img {
   width: 169px;
   border-radius: 0;
   background: #ffffff;
@@ -721,6 +739,13 @@ nav a.active::after {
   font-weight: 700;
 }
 
+.footer-social-group strong {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
 .footer-item svg {
   flex: 0 0 38px;
   width: 38px;
@@ -731,10 +756,9 @@ nav a.active::after {
 .socials {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 20px;
-  padding-left: 20px;
-  border-left: 1px solid rgba(255, 255, 255, 0.36);
+  justify-content: flex-start;
+  gap: 18px;
+  padding-top: 2px;
 }
 
 .socials a {
@@ -912,10 +936,19 @@ nav a.active::after {
     align-items: start;
   }
 
-  .socials {
-    justify-content: flex-start;
-    border-left: 0;
-    padding-left: 0;
+  .footer-brand,
+  .footer-social-group {
+    padding: 22px 24px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .footer-social-group:nth-child(even) {
+    border-left: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .footer-social-group:last-child {
+    border-bottom: 0;
   }
 }
 
@@ -996,10 +1029,17 @@ nav a.active::after {
     padding: 26px 24px;
   }
 
-  .socials {
-    justify-content: flex-start;
-    border-left: 0;
-    padding-left: 0;
+  .footer-brand,
+  .footer-social-group {
+    min-height: 0;
+    padding: 22px 0;
+    border-left: 0 !important;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .footer-social-group:last-child {
+    border-bottom: 0;
   }
 }
 

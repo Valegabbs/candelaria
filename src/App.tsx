@@ -1,11 +1,13 @@
+import type { FormEvent } from 'react'
 import {
   ChevronDown,
-  Globe2,
   MapPin,
   MessageCircle,
 } from 'lucide-react'
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTiktok } from 'react-icons/fa6'
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
 import './App.css'
+
+const whatsappNumber = '5511910000776'
 
 const navItems = [
   { label: 'Início', href: '#inicio' },
@@ -53,7 +55,49 @@ const schools = [
   },
 ]
 
+const socialGroups = [
+  {
+    name: 'FEASP',
+    links: [
+      { label: 'Facebook FEASP', href: 'https://web.facebook.com/faculdadefeasp/', icon: FaFacebookF },
+      { label: 'Instagram FEASP', href: 'https://www.instagram.com/stories/faculdadefeasp/', icon: FaInstagram },
+    ],
+  },
+  {
+    name: 'Escola Técnica Paulista de Agrimensura',
+    links: [
+      { label: 'Facebook EPA', href: 'https://web.facebook.com/EscolaPaulistaDeAgrimensura/', icon: FaFacebookF },
+      { label: 'Instagram EPA', href: 'https://www.instagram.com/epa_agrimensura/', icon: FaInstagram },
+    ],
+  },
+  {
+    name: 'Colégio Candelária',
+    links: [
+      { label: 'Facebook Colégio Candelária', href: 'https://web.facebook.com/iecandelaria/', icon: FaFacebookF },
+      { label: 'Instagram Colégio Candelária', href: 'https://www.instagram.com/ie_candelaria/', icon: FaInstagram },
+    ],
+  },
+]
+
 function App() {
+  function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
+
+    if (!form.reportValidity()) {
+      return
+    }
+
+    const formData = new FormData(form)
+    const name = String(formData.get('name') || '').trim()
+    const whatsapp = String(formData.get('whatsapp') || '').trim()
+    const interest = String(formData.get('interest') || '').trim()
+    const message = `Olá! Vim do site, me chamo ${name} e quero saber mais sobre a ${interest}. Meu WhatsApp é ${whatsapp}.`
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <main>
       <header className="site-header">
@@ -67,7 +111,7 @@ function App() {
             </a>
           ))}
         </nav>
-        <a className="top-whatsapp" href="https://wa.me/5511910000776">
+        <a className="top-whatsapp" href={`https://wa.me/${whatsappNumber}`}>
           <MessageCircle size={15} />
           Fale no WhatsApp
         </a>
@@ -90,7 +134,7 @@ function App() {
           </p>
           <div className="hero-actions">
             <a className="primary-light" href="#instituicoes">Conheça nossas instituições</a>
-            <a className="whatsapp-outline" href="https://wa.me/5511910000776">
+            <a className="whatsapp-outline" href={`https://wa.me/${whatsappNumber}`}>
               <MessageCircle size={17} />
               WhatsApp (11) 91000-0776
             </a>
@@ -136,23 +180,23 @@ function App() {
           <h2>Seu futuro tem um caminho aqui.</h2>
           <span className="yellow-line" />
           <p>Cadastre-se e conheça as condições especiais vigentes.</p>
-          <a className="whatsapp-yellow" href="https://wa.me/5511910000776">
+          <a className="whatsapp-yellow" href={`https://wa.me/${whatsappNumber}`}>
             <MessageCircle size={27} />
             Falar no WhatsApp
           </a>
         </div>
-        <form className="lead-form">
+        <form className="lead-form" onSubmit={handleLeadSubmit}>
           <label>
             <span>Nome</span>
-            <input name="name" placeholder="Nome" />
+            <input name="name" placeholder="Nome" required />
           </label>
           <label>
             <span>WhatsApp</span>
-            <input name="whatsapp" placeholder="WhatsApp" />
+            <input name="whatsapp" placeholder="WhatsApp" required />
           </label>
           <label className="select-label">
             <span>Interesse</span>
-            <select name="interest" defaultValue="">
+            <select name="interest" defaultValue="" required>
               <option value="" disabled>
                 Interesse
               </option>
@@ -167,25 +211,32 @@ function App() {
       </section>
 
       <footer className="site-footer">
-        <img src="/assets/logo.png" alt="UNI Candelária" />
-        <div className="footer-item">
-          <MapPin />
-          <span>Rua Arantiguaba, 804 - Vila Maria - São Paulo</span>
+        <div className="footer-brand">
+          <img src="/assets/logo.png" alt="UNI Candelária" />
+          <div className="footer-item">
+            <MapPin />
+            <span>Rua Arantiguaba, 804 - Vila Maria - São Paulo</span>
+          </div>
+          <div className="socials" aria-label="Redes sociais UniCandelária">
+            <a href="https://www.instagram.com/unicandelaria/" aria-label="Instagram UniCandelária"><FaInstagram /></a>
+            <a href="https://www.linkedin.com/company/unicandelaria/?viewAsMember=true" aria-label="LinkedIn UniCandelária"><FaLinkedinIn /></a>
+          </div>
         </div>
-        <div className="footer-item">
-          <Globe2 />
-          <span>unicandelaria.com.br</span>
-        </div>
-        <div className="footer-item">
-          <MessageCircle />
-          <span>WhatsApp (11) 91000-0776</span>
-        </div>
-        <div className="socials" aria-label="Redes sociais">
-          <a href="https://facebook.com" aria-label="Facebook"><FaFacebookF /></a>
-          <a href="https://instagram.com" aria-label="Instagram"><FaInstagram /></a>
-          <a href="https://tiktok.com" aria-label="TikTok"><FaTiktok /></a>
-          <a href="https://linkedin.com" aria-label="LinkedIn"><FaLinkedinIn /></a>
-        </div>
+        {socialGroups.map((group) => (
+          <div className="footer-social-group" key={group.name}>
+            <strong>{group.name}</strong>
+            <div className="socials" aria-label={`Redes sociais ${group.name}`}>
+              {group.links.map((link) => {
+                const Icon = link.icon
+                return (
+                  <a href={link.href} aria-label={link.label} key={link.href}>
+                    <Icon />
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        ))}
       </footer>
     </main>
   )
