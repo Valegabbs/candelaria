@@ -730,8 +730,6 @@ nav a.active::after {
   height: clamp(96px, 10vw, 132px);
   max-width: 140px;
   object-fit: contain;
-  border-radius: 0;
-  background: #ffffff;
   padding: 0;
 }
 
