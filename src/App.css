@@ -48,16 +48,25 @@
 :root[data-theme='dark'] .feasp { --tone: #96bbff; --tint: #18366f; }
 
 body { background: var(--page); color: var(--text); transition: background .3s ease, color .3s ease; }
-.site-header { width: min(100%, 1500px); min-height: 94px; margin: 0 auto; padding: 14px clamp(24px, 3vw, 48px); background: var(--surface); color: var(--text); border-bottom: 1px solid var(--line); transition: background .3s ease; }
+.hero-shell { background: radial-gradient(circle at 8% 70%, rgba(92, 150, 255, .22), transparent 34%), radial-gradient(circle at 93% 45%, rgba(223, 23, 35, .13), transparent 27%), linear-gradient(118deg, var(--hero-bg-deep), var(--hero-bg) 58%, #08275e); }
+.site-header { width: min(100%, 1500px); min-height: 94px; margin: 0 auto; padding: 14px clamp(24px, 3vw, 48px); background: transparent; color: var(--text); border-bottom: 0; transition: color .4s ease; }
 .brand img { width: 124px; height: 70px; }
 nav { background: var(--surface-soft); border-color: var(--line); }
 nav a { padding: 12px 15px; font-size: 13px; }
 nav a:hover, nav a.active { background: var(--blue); color: #fff; }
-.theme-toggle { display: inline-flex; align-items: center; gap: 11px; padding: 5px 5px 5px 16px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface); color: var(--text); font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 22px rgba(0, 61, 166, .08); }
-.theme-toggle i { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; font-style: normal; transition: transform .3s ease, background .3s ease; }
-.theme-toggle:hover i { transform: rotate(18deg); background: var(--red); }
+.theme-toggle { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 11px; padding: 5px 5px 5px 16px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface); color: var(--text); font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 22px rgba(0, 61, 166, .08); transition: transform .25s ease, background .45s ease, color .45s ease, border-color .45s ease, box-shadow .45s ease; }
+.theme-toggle::before { content: ''; position: absolute; z-index: 0; inset: -70% auto -70% -45%; width: 42%; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255,255,255,.72), transparent); transform: translateX(-140%) rotate(16deg); transition: transform .6s cubic-bezier(.22,.68,0,1); }
+.theme-toggle span, .theme-toggle i { position: relative; z-index: 1; }
+.theme-toggle span { min-width: 76px; text-align: center; }
+.theme-toggle i { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; font-style: normal; transform: rotate(0); transition: transform .55s cubic-bezier(.34,1.56,.64,1), background .4s ease, color .4s ease, box-shadow .4s ease; }
+.theme-toggle[aria-pressed='true']::before { transform: translateX(470%) rotate(16deg); }
+.theme-toggle[aria-pressed='true'] i { transform: rotate(360deg); background: var(--yellow); color: var(--blue); box-shadow: 0 0 0 4px rgba(255,196,0,.14); }
+.theme-toggle:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,61,166,.14); }
+.theme-toggle:hover i { transform: rotate(18deg) scale(1.04); }
+.theme-toggle[aria-pressed='true']:hover i { transform: rotate(342deg) scale(1.04); }
+.theme-toggle:active { transform: translateY(0) scale(.97); }
 
-.hero-section { min-height: 680px; padding: 52px 20px 26px; color: var(--hero-text); background: radial-gradient(circle at 8% 70%, rgba(92, 150, 255, .22), transparent 34%), radial-gradient(circle at 93% 45%, rgba(223, 23, 35, .13), transparent 27%), linear-gradient(118deg, var(--hero-bg-deep), var(--hero-bg) 58%, #08275e); }
+.hero-section { min-height: 680px; padding: 52px 20px 26px; color: var(--hero-text); background: transparent; }
 .hero-section::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .17; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 62px 62px; mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 75%, transparent); }
 .hero-copy { position: relative; z-index: 2; max-width: 1240px; }
 .hero-copy h1 { color: var(--hero-accent); text-shadow: 0 14px 46px rgba(0, 0, 0, .2); }
@@ -81,7 +90,8 @@ nav a:hover, nav a.active { background: var(--blue); color: #fff; }
 
 
 /* The light theme keeps the airy hero used before PR #3. */
-:root:not([data-theme='dark']) .hero-section { color: var(--text); background: linear-gradient(135deg, #fff 25%, #f0f5ff 65%, #fff 95%); }
+:root:not([data-theme='dark']) .hero-shell { background: linear-gradient(135deg, #fff 25%, #f0f5ff 65%, #fff 95%); }
+:root:not([data-theme='dark']) .hero-section { color: var(--text); background: transparent; }
 :root:not([data-theme='dark']) .hero-section::before { opacity: .35; background-image: linear-gradient(rgba(0,61,166,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(0,61,166,.035) 1px, transparent 1px); }
 :root:not([data-theme='dark']) .hero-copy h1 { color: var(--blue); text-shadow: none; }
 :root:not([data-theme='dark']) .typing-line span { background: linear-gradient(90deg, var(--blue) 10%, var(--red) 58%, var(--yellow) 92%); background-clip: text; color: transparent; }

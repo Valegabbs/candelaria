@@ -92,6 +92,7 @@ function App() {
 
   return (
     <main>
+      <div className="hero-shell">
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Uni Candelária"><img src="/assets/logo.png" alt="UNI Candelária"/></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-navigation" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}>{menuOpen ? <X/> : <Menu/>}</button>
@@ -115,6 +116,7 @@ function App() {
         <BrandSlider/>
         <a className="scroll-cue" href="#instituicoes"><span>Descubra o caminho</span><ArrowDown size={16}/></a>
       </section>
+      </div>
 
       <InstitutionsScroll/>
 
