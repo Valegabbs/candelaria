@@ -18,7 +18,7 @@ const navItems = [
 const schools = [
   { title: 'Colégio Candelária', kicker: 'Da base para a vida', description: 'Do Berçário ao Ensino Médio.', image: '/assets/colegio-logo.png', tags: ['Educação Infantil', 'Fundamental', 'Ensino Médio'], button: 'Conheça o Colégio', url: 'https://iecandelaria.com.br/', theme: 'school' },
   { title: 'EPA - Escola Paulista de Agrimensura', kicker: 'Técnica que abre caminhos', description: 'Formação técnica em Agrimensura.', image: '/assets/epa-logo.png', tags: ['Prática de campo', 'Tecnologia', 'Empregabilidade'], button: 'Conheça a EPA', url: 'https://escolapaulistaagrimensura.org.br/', theme: 'epa' },
-  { title: 'FEASP', kicker: 'Conhecimento que transforma', description: 'Graduação e Pós-Graduação.', image: '', tags: ['Engenharia Cartográfica e de Agrimensura', 'Graduação em Pedagogia', 'Georreferenciamento de Imóveis Rurais e Urbanos', 'Pós-Graduação Educação Inclusiva', 'Psicopedagogia', 'Pós-Graduação Práticas de Libras'], button: 'Conheça a FEASP', url: 'https://feasp.edu.br/', theme: 'feasp' },
+  { title: 'FEASP', kicker: 'Conhecimento que transforma', description: 'Graduação e Pós-Graduação.', image: '/assets/feasp-logo.png', tags: ['Engenharia Cartográfica e de Agrimensura', 'Graduação em Pedagogia', 'Georreferenciamento de Imóveis Rurais e Urbanos', 'Pós-Graduação Educação Inclusiva', 'Psicopedagogia', 'Pós-Graduação Práticas de Libras'], button: 'Conheça a FEASP', url: 'https://feasp.edu.br/', theme: 'feasp' },
 ]
 
 const socialGroups = [
