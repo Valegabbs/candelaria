@@ -6,6 +6,14 @@ import './App.css'
 
 const whatsappNumber = '5511910000776'
 
+
+const studentAvatars = [
+  'https://cdn.21st.dev/assets/localized/59a2b5a0dfc1531e2d1ea42d71ae8615f37582e1f8a17e4a1b1aff9afc7ef878.jpg',
+  'https://cdn.21st.dev/assets/localized/c7097eeb66ad097b6e5f9dbb95ae857cd6b55c0ad398c1ea84f3ab90a02c631e.jpg',
+  'https://cdn.21st.dev/assets/localized/c70d48e47d3a2d79ad07d16bff3aa3cff686580be031b6102cad73a15b47d8fd.jpg',
+  'https://cdn.21st.dev/assets/localized/51c9ed392f6e7fce7fd85a78648e3e06bfdcd91999ab5fa48485888231589abf.jpg',
+]
+
 const navItems = [
   { label: 'Início', href: '#inicio' },
   { label: 'Colégio Candelária', href: 'https://iecandelaria.com.br/' },
@@ -101,7 +109,7 @@ function App() {
           <h1>Formação para<br/><span className="sr-only">a vida toda.</span><span className="typing-line" aria-hidden="true"><span>a vida toda.</span><span>cada fase.</span><span>o seu futuro.</span></span></h1>
           <p className="hero-text">Do Berçário à Pós-Graduação, três instituições conectadas em um só ecossistema educacional.</p>
           <div className="hero-conversion"><a className="primary-light" href="#instituicoes">Conheça nossas instituições <ArrowUpRight size={17}/></a>
-            <div className="student-reviews"><div className="student-avatars" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div><div><span className="review-stars" aria-hidden="true">★★★★★</span><p>Avaliações dos nossos alunos</p></div></div>
+            <div className="student-reviews"><div className="student-avatars" aria-hidden="true">{studentAvatars.map((avatar) => <img src={avatar} alt="" key={avatar}/>)}</div><div className="review-proof"><span className="review-stars" aria-hidden="true">★★★★★</span><p>Mais de <strong>1.000 alunos</strong> já passaram pelo ecossistema UniCandelária</p></div></div>
           </div>
         </div>
         <BrandSlider/>
