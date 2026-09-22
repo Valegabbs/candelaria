@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { ArrowDown, ArrowUpRight, ChevronDown, MapPin, Menu, Moon, Sun, X } from 'lucide-react'
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6'
 import AnimatedScroll from './components/ui/animated-scroll'
 import './App.css'
 
@@ -117,7 +117,7 @@ function App() {
       </section>
 
       <section id="contato" className="contact-band reveal-section">
-        <span className="contact-watermark" aria-hidden="true">Candelária</span>
+        <span className="contact-watermark" aria-hidden="true">Unicandelária</span>
         <div className="contact-copy"><p className="section-kicker">O próximo passo começa aqui</p><h2>Seu futuro tem<br/><em>um caminho aqui.</em></h2><p>Cadastre-se e conheça as condições especiais vigentes.</p></div>
         <form className="lead-form" onSubmit={handleLeadSubmit}>
           <div className="form-heading"><span>Vamos conversar</span><strong>Conte seu interesse</strong></div>
@@ -132,7 +132,7 @@ function App() {
         <div className="footer-brand"><img src="/assets/logo.png" alt="UNI Candelária"/><div className="footer-item"><MapPin/><span>Rua Arantiguaba, 804 - Vila Maria - São Paulo</span></div><div className="socials" aria-label="Redes sociais UniCandelária"><a href="https://www.instagram.com/unicandelaria/" aria-label="Instagram UniCandelária"><FaInstagram/></a><a href="https://www.linkedin.com/company/unicandelaria/?viewAsMember=true" aria-label="LinkedIn UniCandelária"><FaLinkedinIn/></a></div></div>
         {socialGroups.map((group) => <div className="footer-social-group" key={group.name}><strong>{group.name}</strong><div className="socials" aria-label={`Redes sociais ${group.name}`}>{group.links.map((link) => { const Icon = link.icon; return <a href={link.href} aria-label={link.label} key={link.href}><Icon/></a> })}</div></div>)}
       </footer>
-      <a className="floating-whatsapp" href={`https://wa.me/${whatsappNumber}`} aria-label="Conversar com a UniCandelária pelo WhatsApp"><span>WhatsApp</span><i><img src="/assets/whatsapp-bubble.jpg" alt=""/></i></a>
+      <a className="floating-whatsapp" href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" aria-label="Conversar com a UniCandelária pelo WhatsApp"><span>WhatsApp</span><i aria-hidden="true"><FaWhatsapp/></i></a>
     </main>
   )
 }
