@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from 'react'
-import { ArrowDown, ArrowUpRight, ChevronDown, MapPin, Menu, MessageCircle, X } from 'lucide-react'
+import { useEffect, useState, type FormEvent } from 'react'
+import { ArrowDown, ArrowUpRight, ChevronDown, MapPin, Menu, Moon, Sun, X } from 'lucide-react'
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
 import AnimatedScroll from './components/ui/animated-scroll'
 import './App.css'
@@ -53,8 +53,22 @@ function BrandSlider() {
   </div>
 }
 
+function MobileTimeline() {
+  const stages = ['Berçário', 'Ensino Básico', 'Técnico', 'Graduação', 'Pós-Graduação']
+  return <div className="mobile-timeline" aria-label="Jornada educacional da UniCandelária">
+    <p>Da primeira descoberta ao próximo grande objetivo.</p>
+    <ol>{stages.map((stage, index) => <li key={stage}><span>{index + 1}</span><strong>{stage}</strong></li>)}</ol>
+  </div>
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [darkTheme, setDarkTheme] = useState(() => localStorage.getItem('unicandelaria-theme') === 'dark')
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkTheme ? 'dark' : 'light'
+    localStorage.setItem('unicandelaria-theme', darkTheme ? 'dark' : 'light')
+  }, [darkTheme])
 
   function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -76,20 +90,19 @@ function App() {
         <nav id="main-navigation" className={menuOpen ? 'open' : ''} aria-label="Navegação principal">
           {navItems.map((item) => <a key={item.label} className={item.label === 'Início' ? 'active' : ''} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
         </nav>
-        <a className="top-whatsapp" aria-label="Fale no WhatsApp" href={`https://wa.me/${whatsappNumber}`}><span>Fale no WhatsApp</span><i><MessageCircle size={17}/></i></a>
+        <button className="theme-toggle" type="button" onClick={() => setDarkTheme(value => !value)} aria-label={darkTheme ? 'Ativar tema claro' : 'Ativar tema escuro'} aria-pressed={darkTheme}>
+          <span>{darkTheme ? 'Tema Claro' : 'Tema Escuro'}</span><i>{darkTheme ? <Sun size={18}/> : <Moon size={18}/>}</i>
+        </button>
       </header>
 
       <section id="inicio" className="hero-section">
         
         <div className="hero-copy">
-          <p className="eyebrow"><span/> Colégio · Técnico · Graduação · Pós</p>
           <h1>Formação para<br/><span className="sr-only">a vida toda.</span><span className="typing-line" aria-hidden="true"><span>a vida toda.</span><span>cada fase.</span><span>o seu futuro.</span></span></h1>
           <p className="hero-text">Do Berçário à Pós-Graduação, três instituições conectadas em um só ecossistema educacional.</p>
-          <div className="hero-actions">
-            <a className="primary-light" href="#instituicoes">Conheça nossas instituições <ArrowDown size={17}/></a>
-            <a className="whatsapp-outline" href={`https://wa.me/${whatsappNumber}`}><MessageCircle size={17}/> WhatsApp (11) 91000-0776</a>
+          <div className="hero-conversion"><a className="primary-light" href="#instituicoes">Conheça nossas instituições <ArrowUpRight size={17}/></a>
+            <div className="student-reviews"><div className="student-avatars" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div><div><span className="review-stars" aria-hidden="true">★★★★★</span><p>Avaliações dos nossos alunos</p></div></div>
           </div>
-          <div className="student-reviews"><div className="student-avatars" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div><div><span className="review-stars" aria-hidden="true">★★★★★</span><p>Avaliações dos nossos alunos</p></div></div>
         </div>
         <BrandSlider/>
         <a className="scroll-cue" href="#instituicoes"><span>Descubra o caminho</span><ArrowDown size={16}/></a>
@@ -100,10 +113,12 @@ function App() {
       <section id="cursos" className="journey">
         <div className="section-heading"><p className="section-kicker">Educação que acompanha você</p><h2>Uma jornada.<br/><em>Muitas possibilidades.</em></h2><p>Formação conectada, do primeiro passo ao próximo grande objetivo.</p></div>
         <AnimatedScroll items={schools.map(school => ({ title: school.title, description: school.description, theme: school.theme, href: school.url, action: school.button, logo: <InstitutionLogo school={school}/>, tags: school.tags }))}/>
+        <MobileTimeline/>
       </section>
 
       <section id="contato" className="contact-band reveal-section">
-        <div className="contact-copy"><p className="section-kicker">O próximo passo começa aqui</p><h2>Seu futuro tem<br/><em>um caminho aqui.</em></h2><p>Cadastre-se e conheça as condições especiais vigentes.</p><a className="whatsapp-yellow" href={`https://wa.me/${whatsappNumber}`}><MessageCircle size={23}/> Falar no WhatsApp</a></div>
+        <span className="contact-watermark" aria-hidden="true">Candelária</span>
+        <div className="contact-copy"><p className="section-kicker">O próximo passo começa aqui</p><h2>Seu futuro tem<br/><em>um caminho aqui.</em></h2><p>Cadastre-se e conheça as condições especiais vigentes.</p></div>
         <form className="lead-form" onSubmit={handleLeadSubmit}>
           <div className="form-heading"><span>Vamos conversar</span><strong>Conte seu interesse</strong></div>
           <label><span>Nome</span><input name="name" placeholder="Seu nome" autoComplete="name" required/></label>
@@ -117,6 +132,7 @@ function App() {
         <div className="footer-brand"><img src="/assets/logo.png" alt="UNI Candelária"/><div className="footer-item"><MapPin/><span>Rua Arantiguaba, 804 - Vila Maria - São Paulo</span></div><div className="socials" aria-label="Redes sociais UniCandelária"><a href="https://www.instagram.com/unicandelaria/" aria-label="Instagram UniCandelária"><FaInstagram/></a><a href="https://www.linkedin.com/company/unicandelaria/?viewAsMember=true" aria-label="LinkedIn UniCandelária"><FaLinkedinIn/></a></div></div>
         {socialGroups.map((group) => <div className="footer-social-group" key={group.name}><strong>{group.name}</strong><div className="socials" aria-label={`Redes sociais ${group.name}`}>{group.links.map((link) => { const Icon = link.icon; return <a href={link.href} aria-label={link.label} key={link.href}><Icon/></a> })}</div></div>)}
       </footer>
+      <a className="floating-whatsapp" href={`https://wa.me/${whatsappNumber}`} aria-label="Conversar com a UniCandelária pelo WhatsApp"><span>WhatsApp</span><i><img src="/assets/whatsapp-bubble.jpg" alt=""/></i></a>
     </main>
   )
 }
