@@ -110,7 +110,7 @@ function App() {
           <h1>Formação para<br/><span className="sr-only">a vida toda.</span><span className="typing-line" aria-hidden="true"><span>a vida toda.</span><span>cada fase.</span><span>o seu futuro.</span></span></h1>
           <p className="hero-text">Do Berçário à Pós-Graduação, três instituições conectadas em um só ecossistema educacional.</p>
           <div className="hero-conversion"><a className="primary-light" href="#instituicoes">Conheça nossas instituições <ArrowUpRight size={17}/></a>
-            <div className="student-reviews"><div className="student-avatars" aria-hidden="true">{studentAvatars.map((avatar) => <img src={avatar} alt="" key={avatar}/>)}</div><div className="review-proof"><span className="review-stars" aria-hidden="true">★★★★★</span><p>Mais de <strong>1.000 alunos</strong> já passaram pelo ecossistema UniCandelária</p></div></div>
+            <div className="student-reviews"><div className="student-avatars" aria-hidden="true">{studentAvatars.map((avatar) => <img src={avatar} alt="" key={avatar}/>)}</div><div className="review-proof"><span className="review-stars" aria-hidden="true">★★★★★</span><p>Mais de <strong>15.000 alunos</strong> já passaram pelo ecossistema UniCandelária</p></div></div>
           </div>
         </div>
         <BrandSlider/>
